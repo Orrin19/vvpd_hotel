@@ -6,7 +6,6 @@ from client import Client
 from lodger import Lodger
 from room import Room
 
-print(help(Client), help(Lodger), help(Room))
 
 class Hotel:
     """
