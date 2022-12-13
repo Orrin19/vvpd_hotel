@@ -6,8 +6,25 @@ from hotel import Hotel
 
 
 def main():
-    """Реализует меню"""
+    """
+    Создаёт пустой объект гостиницы и реализует работу пользователя с меню
+    """
     hotel = Hotel.empty()
+    options = {
+        '0': sys.exit,
+        '1': hotel.create_client,
+        '2': hotel.create_room,
+        '3': hotel.create_lodger,
+        '4': hotel.delete_client,
+        '5': hotel.delete_room,
+        '6': hotel.delete_lodger,
+        '7': hotel.evict_lodger,
+        '8': hotel.print_clients,
+        '9': hotel.print_rooms,
+        '10': hotel.print_lodgers,
+        '11': hotel.load,
+        '12': hotel.save
+    }
     while True:
         print('\nВыберите нужное действие:')
         print('1.  Зарегистрировать нового клиента')
@@ -23,30 +40,11 @@ def main():
         print('11. Загрузить базу из файла')
         print('12. Сохранить базу в файл')
         print('0.  Завершить работу')
-        options = [
-            sys.exit,
-            hotel.create_client,
-            hotel.create_room,
-            hotel.create_lodger,
-            hotel.delete_client,
-            hotel.delete_room,
-            hotel.delete_lodger,
-            hotel.evict_lodger,
-            hotel.print_clients,
-            hotel.print_rooms,
-            hotel.print_lodgers,
-            hotel.load,
-            hotel.save
-        ]
         try:
-            request = int(input('Введите номер выбранного пункта >>> '))
-            if request < 0:
-                request += 1000
+            request = input('Введите номер выбранного пункта >>> ')
             options[request]()
-        except ValueError:
+        except KeyError:
             print('Введите корректный номер действия!')
-        except IndexError:
-            print(f"Введите номер от 0 до {len(options) - 1}!")
 
 
 if __name__ == '__main__':
